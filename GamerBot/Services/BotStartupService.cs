@@ -44,6 +44,10 @@ namespace GamerBot.Services
             var commandHandling = ActivatorUtilities.CreateInstance<CommandHandlingService>(_services);
             await commandHandling.InitializeAsync();
 
+            // XP Service initialisieren
+            var xpService = _services.GetRequiredService<XPService>();
+            xpService.Initialize();
+
             // Discord Login & Start
             await _client.LoginAsync(TokenType.Bot, _config.BotToken);
             await _client.StartAsync();

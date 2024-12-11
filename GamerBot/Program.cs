@@ -10,6 +10,7 @@ using System.Windows.Input;
 using GamerBot.Services;
 using GamerBot.Data;
 using Microsoft.EntityFrameworkCore;
+using GamerBot.Data.Repository;
 
 namespace GamerBot;
 public class Program
@@ -57,6 +58,9 @@ public class Program
 
                 // Andere Services (z. B. CommandHandlingService, InteractionHandlingService)
                 // Diese Services erhalten den Client und CommandService durch DI
+
+                services.AddSingleton<UserRepository>();
+                services.AddSingleton<XPService>();
 
                 // StartService ist ein Service, der beim Start ausgeführt wird, um Bot zu initialisieren.
                 services.AddHostedService<BotStartupService>();
