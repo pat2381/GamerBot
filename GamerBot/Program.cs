@@ -37,7 +37,7 @@ public class Program
             .ConfigureServices((context, services) =>
             {
                 // Config als Singleton verfügbar machen
-                services.AddSingleton(Config!);
+                services.AddSingleton(Config);
 
                 // Discord Client und Services
                 services.AddSingleton(new DiscordSocketClient(new DiscordSocketConfig

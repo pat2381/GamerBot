@@ -12,12 +12,13 @@ namespace GamerBot.Modules
         private readonly ILogger<ModerationActionsModule> _logger;
         private readonly Config _config;
         // Hier benötigen wir später den JailService, etc., wenn wir ihn implementiert haben.
-        // private readonly JailService _jailService;
+        private readonly JailService _jailService;
 
-        public ModerationActionsModule(Config config, ILogger<ModerationActionsModule> logger)
+        public ModerationActionsModule(Config config, ILogger<ModerationActionsModule> logger, JailService jailService)
         {
             _config = config;
             _logger = logger;
+            _jailService = jailService;
         }
 
         [ComponentInteraction("action:*:*")]
@@ -117,7 +118,7 @@ namespace GamerBot.Modules
             // Jail-Funktion noch nicht implementiert.
             // Wir können hier später den JailService aufrufen.
             // Vorläufig:
-            
+            //_jailService.JailUserAsync(user, )
             await RespondAsync($"{user.Mention} wird eingesperrt (Funktion noch nicht implementiert).", ephemeral: false);
             await InformUserDM(user, "Du wurdest vorübergehend in den Jail-Channel eingesperrt.");
         }
