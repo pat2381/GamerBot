@@ -1,0 +1,16 @@
+{
+  "BotToken": "DEIN_BOT_TOKEN_HIER",
+  "Prefix": "!",
+  "WelcomeChannelId": 123456789012345678,
+  "WelcomeMessage": "Willkommen auf dem Server, {Mention}!",
+  "XPPerMessage": 5,
+  "LevelCurve": "n*100",
+  "LeaderboardLimit": 10,
+  "ForbiddenWords": [ "schlimmeswort1", "schlimmeswort2" ],
+  "ModerationAlertChannelId": 234567890123456789,
+  "LevelRoles": {
+    "10": "Aktiv",
+    "20": "Stammgast"
+  },
+  "DatabaseFile": "botdata.sqlite"
+}
