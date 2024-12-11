@@ -66,29 +66,4 @@ public class Program
         await host.RunAsync();
     }
 
-    public async Task RunAsync()
-    {
-        _client = new DiscordSocketClient(new DiscordSocketConfig
-        {
-            LogLevel = LogSeverity.Info,
-            // Weitere Konfigurationsoptionen falls nötig
-        });
-
-        CommandService = new CommandService();
-
-        _client.Log += Log;
-
-        // Services wie CommandHandlingService, InteractionHandlingService später hier initialisieren
-
-        await _client.LoginAsync(TokenType.Bot, Config?.BotToken);
-        await _client.StartAsync();
-
-        await Task.Delay(-1);
-    }
-
-    private Task Log(LogMessage msg)
-    {
-        Console.WriteLine(msg.ToString());
-        return Task.CompletedTask;
-    }
 }
