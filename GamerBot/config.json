@@ -12,5 +12,5 @@
     "10": "Aktiv",
     "20": "Stammgast"
   },
-  "DatabaseFile": "botdata.sqlite"
+  "DatabaseFile": "botdata.db"
 }
