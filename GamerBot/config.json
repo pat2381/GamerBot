@@ -1,5 +1,5 @@
 {
-  "BotToken": "MTE4OTkyMDg1MjQ1MjU4OTY2MA.GiGlfI.-bIwo2XzvhLhgP-FCoO6fMPd292e8BV-YxdR9U",
+  "BotToken": "",
   "Prefix": "!",
   "ForbiddenWordsFilePath": "data/forbidden_words.txt",
   "MaxPenaltyPoints": 100,
