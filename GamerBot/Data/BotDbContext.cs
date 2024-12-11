@@ -11,8 +11,13 @@ namespace GamerBot.Data
     public class BotDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<WarningData> Warnings { get; set; }
+        public DbSet<ForbiddenWord> ForbiddenWords { get; set; }
+        public DbSet<UserPenalty> UserPenalties { get; set; }
+        public DbSet<UserJailData> UserJail { get; set; }
 
-        private string? _dbPath;
+
+        private string _dbPath;
 
         public BotDbContext(string dbPath)
         {

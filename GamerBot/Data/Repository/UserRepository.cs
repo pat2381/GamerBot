@@ -41,7 +41,7 @@ namespace GamerBot.Data.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<User?> GetUserAsync(ulong userId, ulong guildId)
+        public async Task<User> GetUserAsync(ulong userId, ulong guildId)
         {
             return await _dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId && u.GuildId == guildId);
         }

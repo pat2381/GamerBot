@@ -1,13 +1,26 @@
 {
-  "BotToken": "DEIN_BOT_TOKEN_HIER",
+  "BotToken": "MTE4OTkyMDg1MjQ1MjU4OTY2MA.GiGlfI.-bIwo2XzvhLhgP-FCoO6fMPd292e8BV-YxdR9U",
   "Prefix": "!",
-  "WelcomeChannelId": 123456789012345678,
-  "WelcomeMessage": "Willkommen auf dem Server, {Mention}!",
+  "ForbiddenWordsFilePath": "data/forbidden_words.txt",
+  "MaxPenaltyPoints": 100,
+  "PenaltyMultipliers": {
+    "0": 1.0,
+    "1": 1.5,
+    "3": 2.5,
+    "5": 8.0
+  },
+  "CensorString": "******",
+  "ModerationChannelId": 1189912846251855914,
+  "JailRoleName": "Gesperrt",
+  "JailChannelId": 1189887413661728879,
+  "DefaultJailTimeMinutes": 60,
+
+  "WelcomeChannelId": 1189879884651184149,
+  "WelcomeMessage": "Willkommen, {Mention}!",
   "XPPerMessage": 5,
   "LevelCurve": "n*100",
   "LeaderboardLimit": 10,
-  "ForbiddenWords": [ "schlimmeswort1", "schlimmeswort2" ],
-  "ModerationAlertChannelId": 234567890123456789,
+  "ModerationAlertChannelId": 1200527403534000228,
   "LevelRoles": {
     "10": "Aktiv",
     "20": "Stammgast"

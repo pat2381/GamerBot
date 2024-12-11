@@ -17,11 +17,30 @@ namespace GamerBot.Modules
         }
 
         [Command("help")]
-        [Summary("Listet verfügbare Befehle auf.")]
+        [Summary("Listet verfügbare Befehle auf. Mods sehen zusätzliche Befehle.")]
         public async Task HelpAsync()
         {
-            // Später: Dynamisch aus CommandService lesen und je nach User Type filtern
-            await ReplyAsync("Verfügbare Befehle: !ping, !help, ... (wird noch erweitert)");
+            // Primitives Beispiel: Prüfe, ob der Nutzer ein Mod ist, indem wir auf die Berechtigung KickMembers prüfen
+            var guildUser = Context.User as Discord.WebSocket.SocketGuildUser;
+            bool isMod = guildUser != null && guildUser.GuildPermissions.KickMembers;
+
+            // Allgemeine Befehle
+            var helpMessage = "**Verfügbare Befehle:**\n" +
+                              "`!ping` - Prüfe ob der Bot reagiert\n" +
+                              "`!rank` - Zeige deinen aktuellen Level und XP\n" +
+                              "`!leaderboard` - Zeige die Top 10 Nutzer";
+
+            if (isMod)
+            {
+                helpMessage += "\n\n**Moderationsbefehle:**\n" +
+                               "`!warn @User <Grund>` - Warne einen Nutzer\n" +
+                               "`!mute @User <Dauer>` - Mute einen Nutzer\n" +
+                               "`!kick @User <Grund>` - Kicke einen Nutzer\n" +
+                               // weitere Mod-Befehle hier einfügen
+                               "`!backup` - Erstelle ein Backup der Datenbank (falls implementiert)";
+            }
+
+            await ReplyAsync(helpMessage);
         }
     }
 }

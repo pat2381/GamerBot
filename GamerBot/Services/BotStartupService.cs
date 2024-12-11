@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GamerBot.Data.Repository;
+using Discord.Interactions;
 
 namespace GamerBot.Services
 {
@@ -44,13 +46,27 @@ namespace GamerBot.Services
             var commandHandling = ActivatorUtilities.CreateInstance<CommandHandlingService>(_services);
             await commandHandling.InitializeAsync();
 
+            // Moderation zuerst
+            var moderationService = _services.GetRequiredService<ModerationService>();
+            moderationService.Initialize();
+
             // XP Service initialisieren
             var xpService = _services.GetRequiredService<XPService>();
             xpService.Initialize();
 
+            //Willkommens Service initialisieren
+            var welcomeService = _services.GetRequiredService<WelcomeService>();
+            welcomeService.Initialize();
+
             // Discord Login & Start
             await _client.LoginAsync(TokenType.Bot, _config.BotToken);
             await _client.StartAsync();
+
+ 
+
+            // Interaction-Handhabung nach dem Start initialisieren
+            var interactionHandling = _services.GetRequiredService<InteractionHandlingService>();
+            await interactionHandling.InitializeAsync();
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
@@ -65,10 +81,13 @@ namespace GamerBot.Services
             return Task.CompletedTask;
         }
 
-        private Task ClientReadyAsync()
+        private async Task ClientReadyAsync()
         {
             _logger.LogInformation($"Bot ist angemeldet als {_client.CurrentUser.Username}#{_client.CurrentUser.Discriminator}");
-            return Task.CompletedTask;
+
+            // Hier rufen wir nun den StartupDataLoadService auf:
+            var startupDataLoad = _services.GetRequiredService<StartupDataLoadService>();
+            await startupDataLoad.LoadForbiddenWordsAsync();
         }
     }
 }
